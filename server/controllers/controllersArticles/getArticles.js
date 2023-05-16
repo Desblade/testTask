@@ -2,12 +2,12 @@ const { db } = require('../../db');
 
 const getArticles = async (req, res) => {
   try {
-    const articles = await db('articles')
-      .select(['id', 'title', 'description', 'authorId'])
-      .leftJoin('users', 'users.id', 'articles.authorId')
+    const articles = await db('articles as a')
+      .select('a.*')
+      .leftJoin('users as u', 'u.id', 'a.authorId')
       .orderBy('createdAt', 'DESC')
       .limit(20)
-      .where('articles.authorId', req.user.id);
+      .where('a.authorId', req.user.id);
 
     return res.json(articles);
   } catch (e) {
