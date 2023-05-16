@@ -3,6 +3,7 @@ const { db } = require('../../db');
 const getArticles = async (req, res) => {
   try {
     const articles = await db('articles')
+      .select('*')
       .leftJoin('users', 'users.id', 'articles.authorId')
       .orderBy('createdAt', 'DESC')
       .limit(20)

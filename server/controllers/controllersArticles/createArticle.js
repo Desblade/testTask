@@ -16,9 +16,10 @@ const createArticle = async (req, res) => {
         title,
         description,
         authorId: req.user.id,
-      });
+      })
+      .returning('*')
 
-    return res.json(article);
+    return res.json(article[0]);
 
   } catch (e) {
     console.error(e);
