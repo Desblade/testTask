@@ -13,7 +13,7 @@ const deleteArticle = async (req, res) => {
       return res.status(500).json({ message: 'Не удалось найти нужную задачу' });
     }
 
-    if (article.id === req.user.id) {
+    if (article.authorId === req.user.id) {
       await db('articles')
         .where({ id })
         .del();
