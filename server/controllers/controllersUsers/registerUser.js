@@ -9,7 +9,7 @@ const registerUser = async (req, res) => {
     const errs = validationResult(req);
 
     const user = await db('users')
-      .select(['login', 'password'])
+      .select(['id', 'login', 'password'])
       .where({ login })
       .first();
 

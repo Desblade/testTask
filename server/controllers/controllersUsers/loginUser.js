@@ -7,7 +7,7 @@ const loginUser = async (req, res) => {
     const { login, password } = req.body;
 
     const user = await db('users')
-      .select(['login', 'password'])
+      .select(['id', 'login', 'password'])
       .where({ login })
       .first();
 
